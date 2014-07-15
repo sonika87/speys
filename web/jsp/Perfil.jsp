@@ -1,3 +1,10 @@
+<%-- 
+    Document   : Perfil
+    Created on : 14/07/2014, 02:44:43 PM
+    Author     : sonika
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 <head>
@@ -209,4 +216,5 @@
 	</body>
 
 	</html>
+
 
