@@ -46,6 +46,8 @@ public class ExamenCatellDao {
               pregunta.setResB(rs.getString("resB"));
               pregunta.setResC(rs.getString("resC"));
               pregunta.setFactor("");
+              pregunta.setEstado("");
+              pregunta.setRespuesta("");
               
               peguntas.add(pregunta);
 

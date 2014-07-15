@@ -38,10 +38,35 @@ public class ExamenCatellServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            request.setAttribute("preguntas", new ExamenCatellDao().consultar());
-            RequestDispatcher rd = request.getRequestDispatcher("jsp/ExamenCatell.jsp");
-
-                rd.forward(request, response);
+            RequestDispatcher rd = null;
+            
+            if (request.getParameter("posicion") == null) {
+                request.getSession().setAttribute("preguntas", new ExamenCatellDao().consultar());
+                request.setAttribute("posicion", 1);
+                rd = request.getRequestDispatcher("jsp/ExamenCatell.jsp");
+            }else{
+                
+                int posicion = Integer.parseInt(request.getParameter("posicion"));
+                List<PeguntaExamenBean> preguntas = (List<PeguntaExamenBean>) request.getSession().getAttribute("preguntas");
+                
+                if (request.getParameter("respuesta") != null) {
+                    preguntas.get((posicion-1)).setRespuesta(request.getParameter("respuesta"));
+                    preguntas.get((posicion-1)).setEstado("R");
+                }else{
+                    preguntas.get((posicion-1)).setEstado("NR");
+                }
+                request.getSession().setAttribute("preguntas", preguntas);
+                
+                if (request.getParameter("direccion").equals("Anterior")) {
+                    request.setAttribute("posicion", posicion-1);
+                }else{
+                    request.setAttribute("posicion", posicion+1);
+                }
+                
+                rd = request.getRequestDispatcher("jsp/ExamenCatell.jsp");
+            }
+            
+            rd.forward(request, response);
 
             }
         }

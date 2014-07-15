@@ -18,6 +18,8 @@ public class PeguntaExamenBean {
     private String resB;
     private String resC;
     private String factor;
+    private String estado;
+    private String respuesta;
 
     /**
      * @return the numero
@@ -101,6 +103,34 @@ public class PeguntaExamenBean {
      */
     public void setFactor(String factor) {
         this.factor = factor;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    /**
+     * @return the respuesta
+     */
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    /**
+     * @param respuesta the respuesta to set
+     */
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
     
 }
