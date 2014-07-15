@@ -29,7 +29,7 @@ public class ConexionBD {
     private static Connection con; //  guarda el objeto connexión.
 
     /*Constructor inicializa los datos de host,puerto,usuario,password*/
-    private ConexionBD() {
+    public ConexionBD() {
         performConnection();
     }
 
