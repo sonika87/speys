@@ -47,6 +47,7 @@ public class ConexionBD {
         try { // preparamos la conexión
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://" + ipAddress + ":" + service + "/" + dbName, user, password);
+            System.out.println("Hay conexion");
         } catch (Exception e) {
             System.out.println("Error al abrir la conexión en: " + e);
         }

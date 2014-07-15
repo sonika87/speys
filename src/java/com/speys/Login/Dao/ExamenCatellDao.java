@@ -51,7 +51,7 @@ public class ExamenCatellDao {
 
             }
         } catch (SQLException sqle) {
-            System.out.println(sqle.getErrorCode());
+            System.out.println("error: " + sqle.getErrorCode());
         }
         return peguntas;
     }
