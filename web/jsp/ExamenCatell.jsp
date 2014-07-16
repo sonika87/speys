@@ -17,6 +17,12 @@
             int posicion = Integer.parseInt(request.getAttribute("posicion").toString());
         %>
 
+        <script>
+            function enviar_formulario(posicion) {
+                document.getElementById('hiddenPosicion').value = posicion;
+                document.getElementById('formulario').submit();
+            }
+        </script>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -163,22 +169,22 @@
                         <button type="submit"><i class="icon-search"></i></button>
                     </div>
                 </form>	
-                <div style=" height:500px; overflow-y : scroll ;">
+                <div style=" height:500px; overflow-y : scroll ; ">
                     <table width='100%'>
                         <% for (PeguntaExamenBean pregunta : preguntas) {%>
                         <% if (pregunta.getNumero() == posicion) {%>
                         <tr style='background-color: #20D538' onclick=""onmouseover='this.style.background = "#20ADD5"' onmouseout='this.style.background = "#20D538"' >
                             <td >&nbsp;&nbsp;&nbsp;&nbsp;Pregunta <%=pregunta.getNumero()%></td>
-                            <% if(pregunta.getEstado().equals("R")){%><td><img src="img/accepted.png" width="15px"></td><%}%>
-                            <% if(pregunta.getEstado().equals("")){%><td><img src="img/circle_orange.png" width="15px"></td><%}%>
-                            <% if(pregunta.getEstado().equals("NR")){%><td><img src="img/circle_orange.png" width="15px"></td><%}%>
+                            <% if (pregunta.getEstado().equals("R")) {%><td><img src="img/accepted.png" width="15px"></td><%}%>
+                            <% if (pregunta.getEstado().equals("")) {%><td><img src="img/circle_orange.png" width="15px"></td><%}%>
+                            <% if (pregunta.getEstado().equals("NR")) {%><td><img src="img/circle_orange.png" width="15px"></td><%}%>
                         </tr>
                         <% } else {%>
-                        <tr onclick=""onmouseover='this.style.background = "#20ADD5"' onmouseout='this.style.background = ""' >
+                        <tr onclick="javascript:enviar_formulario(<%= pregunta.getNumero()%>);" onmouseover='this.style.background = "#20ADD5"' onmouseout='this.style.background = ""' >
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;Pregunta <%=pregunta.getNumero()%></td>
-                            <% if(pregunta.getEstado().equals("R")){%><td><img src="img/accepted.png" width="15px"></td><%}%>
-                            <% if(pregunta.getEstado().equals("NR")){%><td><img src="img/clock.png" width="15px"></td><%}%>
-                            <% if(pregunta.getEstado().equals("")){%><td><img src="img/circle_blue.png" width="15px"></td><%}%>
+                            <% if (pregunta.getEstado().equals("R")) {%><td><img  src="img/accepted.png" width="15px"></td><%}%>
+                            <% if (pregunta.getEstado().equals("NR")) {%><td><img  src="img/clock.png" width="15px"></td><%}%>
+                            <% if (pregunta.getEstado().equals("")) {%><td><img  src="img/circle_blue.png" width="15px"></td><%}%>
                         </tr>
                         <% } %>
                         <% }%>
@@ -199,7 +205,7 @@
                                 <div class="box-content nopadding">
                                     <div class="tab-content padding tab-content-inline tab-content-bottom">
                                         <div class="tab-pane active" id="profile">
-                                            <form action="/SPEYS/ExamenCatellServlet" class="form-horizontal" method="POST">
+                                            <form neme="formulario" id="formulario" action="/SPEYS/ExamenCatellServlet" class="form-horizontal" method="POST">
                                                 <div class="row-fluid">
 
                                                     <div class="span10">
@@ -208,20 +214,21 @@
                                                         </div>
                                                         <br/>
                                                         <div >
-                                                            
-                                                            <input <%if(preguntas.get((posicion - 1)).getRespuesta().equals("A")){%> checked="checked" <% } %> type="radio" name="respuesta" value="A"> A) <%= preguntas.get((posicion - 1)).getResA()%><br/><br/>
-                                                            <input <%if(preguntas.get((posicion - 1)).getRespuesta().equals("B")){%> checked="checked" <% } %> type="radio" name="respuesta" value="B"> B) <%= preguntas.get((posicion - 1)).getResB()%><br/><br/>
-                                                            <input <%if(preguntas.get((posicion - 1)).getRespuesta().equals("C")){%> checked="checked" <% } %> type="radio" name="respuesta" value="C"> C) <%= preguntas.get((posicion - 1)).getResC()%>
+
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("A")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="A"> A) <%= preguntas.get((posicion - 1)).getResA()%><br/><br/>
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("B")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="B"> B) <%= preguntas.get((posicion - 1)).getResB()%><br/><br/>
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("C")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="C"> C) <%= preguntas.get((posicion - 1)).getResC()%>
                                                         </div>
                                                         <br/><br/>
                                                         <%session.setAttribute("peguntas", preguntas);%>
                                                         <input style="visibility:hidden;" name="posicion" value="<%=posicion%>">
+                                                        <input id="hiddenPosicion" style="visibility:hidden;" name="posicionHiden" value="<%=posicion%>">
                                                         <div>
-                                                            <%if(posicion == 1){ %>
+                                                            <%if (posicion == 1) { %>
                                                             <input type="submit" class='btn btn-primary' value="Anterior" disabled>
                                                             <%} else {%>
                                                             <input type="submit" name="direccion" class='btn btn-primary' value="Anterior" >
-                                                            <% } %>
+                                                            <% }%>
                                                             <input type="submit" name="direccion" class='btn btn-primary' value="Siguiente">
                                                         </div>
                                                     </div>
