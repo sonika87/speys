@@ -24,6 +24,29 @@
             }
         </script>
 
+        <script type="text/javascript">
+            var message = 'No debe cerrar el navegador. Si presiona Aceptar lo cerrará y perderá los cambios no guardados.';
+            function salir(e)
+            {
+                alert("hola");
+                var evtobj = window.event ? event : e;
+                if (evtobj === e)
+                {
+                    if (!evtobj.clientY)
+                    {
+                        evtobj.returnValue = message;
+                    }
+                }
+                else
+                {
+                    if (evtobj.clientY < 0)
+                    {
+                        evtobj.returnValue = message;
+                    }
+                }
+            }
+        </script>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <!-- Apple devices fullscreen -->
@@ -103,8 +126,8 @@
         <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
 
     </head>
-
-    <body>
+    <!-- onbeforeunload="salir(event)"-->
+    <body onbeforeunload="salir(event)">
         <div id="navigation">
             <div class="container-fluid">
                 <a href="#" id="brand">SPEYS</a>
@@ -173,7 +196,7 @@
                     <table width='100%'>
                         <% for (PeguntaExamenBean pregunta : preguntas) {%>
                         <% if (pregunta.getNumero() == posicion) {%>
-                        <tr style='background-color: #20D538' onclick=""onmouseover='this.style.background = "#20ADD5"' onmouseout='this.style.background = "#20D538"' >
+                        <tr style='background-color: #20D538' >
                             <td >&nbsp;&nbsp;&nbsp;&nbsp;Pregunta <%=pregunta.getNumero()%></td>
                             <% if (pregunta.getEstado().equals("R")) {%><td><img src="img/accepted.png" width="15px"></td><%}%>
                             <% if (pregunta.getEstado().equals("")) {%><td><img src="img/circle_orange.png" width="15px"></td><%}%>
@@ -229,7 +252,11 @@
                                                             <%} else {%>
                                                             <input type="submit" name="direccion" class='btn btn-primary' value="Anterior" >
                                                             <% }%>
+                                                            <%if (posicion == 187) { %>
+                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Siguiente" disabled>
+                                                            <% } else { %>
                                                             <input type="submit" name="direccion" class='btn btn-primary' value="Siguiente">
+                                                            <% }%>
                                                         </div>
                                                     </div>
                                                 </div>
