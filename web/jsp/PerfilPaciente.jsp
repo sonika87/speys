@@ -1,0 +1,469 @@
+<%-- 
+    Document   : PerfilPaciente
+    Created on : 15/07/2014, 05:45:32 PM
+    Author     : sonika
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <!-- Apple devices fullscreen -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- Apple devices fullscreen -->
+        <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <title>SPEYS</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Bootstrap responsive -->
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <!-- jQuery UI -->
+        <link rel="stylesheet" href="css/plugins/jquery-ui/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="css/plugins/jquery-ui/smoothness/jquery.ui.theme.css">
+        <!-- Tagsinput -->
+        <link rel="stylesheet" href="css/plugins/tagsinput/jquery.tagsinput.css">
+        <!-- select2 -->
+        <link rel="stylesheet" href="css/plugins/select2/select2.css">
+        <!-- Theme CSS -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- Color CSS -->
+        <link rel="stylesheet" href="css/themes.css">
+        
+       
+	<!-- dataTables -->
+	<link rel="stylesheet" href="css/plugins/datatable/TableTools.css">
+	<!-- chosen -->
+	<link rel="stylesheet" href="css/plugins/chosen/chosen.css">
+
+
+        <!-- jQuery -->
+        <script src="js/jquery.min.js"></script>
+
+        <!-- Nice Scroll -->
+        <script src="js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+        <!-- imagesLoaded -->
+        <script src="js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+        <!-- jQuery UI -->
+        <script src="js/plugins/jquery-ui/jquery.ui.core.min.js"></script>
+        <script src="js/plugins/jquery-ui/jquery.ui.widget.min.js"></script>
+        <script src="js/plugins/jquery-ui/jquery.ui.mouse.min.js"></script>
+        <script src="js/plugins/jquery-ui/jquery.ui.resizable.min.js"></script>
+        <script src="js/plugins/jquery-ui/jquery.ui.sortable.min.js"></script>
+        <!-- slimScroll -->
+        <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- select2 -->
+        <script src="js/plugins/select2/select2.min.js"></script>
+        <!-- Bootbox -->
+        <script src="js/plugins/bootbox/jquery.bootbox.js"></script>
+        <!-- Bootbox -->
+        <script src="js/plugins/form/jquery.form.min.js"></script>
+        <!-- Validation -->
+        <script src="js/plugins/validation/jquery.validate.min.js"></script>
+        <script src="js/plugins/validation/additional-methods.min.js"></script>
+        <!-- TagsInput -->
+        <script src="js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+        <!-- Custom file upload -->
+        <script src="js/plugins/fileupload/bootstrap-fileupload.min.js"></script>
+
+        <!-- Theme framework -->
+        <script src="js/eakroko.min.js"></script>
+        <!-- Theme scripts -->
+        <script src="js/application.min.js"></script>
+        <!-- Just for demonstration -->
+        <script src="js/demonstration.min.js"></script>
+        
+        <!-- dataTables -->
+	<script src="js/plugins/datatable/jquery.dataTables.min.js"></script>
+	<script src="js/plugins/datatable/TableTools.min.js"></script>
+	<script src="js/plugins/datatable/ColReorderWithResize.js"></script>
+	<script src="js/plugins/datatable/ColVis.min.js"></script>
+	<script src="js/plugins/datatable/jquery.dataTables.columnFilter.js"></script>
+	<script src="js/plugins/datatable/jquery.dataTables.grouping.js"></script>
+        
+        <!-- jQuery UI -->
+	<script src="js/plugins/jquery-ui/jquery.ui.core.min.js"></script>
+	<script src="js/plugins/jquery-ui/jquery.ui.widget.min.js"></script>
+	<script src="js/plugins/jquery-ui/jquery.ui.mouse.min.js"></script>
+	<script src="js/plugins/jquery-ui/jquery.ui.resizable.min.js"></script>
+	<script src="js/plugins/jquery-ui/jquery.ui.sortable.min.js"></script>
+	<script src="js/plugins/jquery-ui/jquery.ui.datepicker.min.js"></script>
+        
+        <!-- Chosen -->
+	<script src="js/plugins/chosen/chosen.jquery.min.js"></script>
+
+        <!--[if lte IE 9]>
+                <script src="js/plugins/placeholder/jquery.placeholder.min.js"></script>
+                <script>
+                        $(document).ready(function() {
+                                $('input, textarea').placeholder();
+                        });
+                </script>
+        <![endif]-->
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="img/favicon.ico" />
+        <!-- Apple devices Homescreen icon -->
+        <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+
+    </head>
+
+    <body>
+        <div id="navigation">
+            <div class="container-fluid">
+                <a href="#" id="brand">SPEYS</a>
+                <a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
+                <ul class='main-nav'>
+                    <li>
+                        <a href="index.html">
+                            <span>Inicio</span>
+                        </a>
+                    </li>	
+                </ul>
+                <div class="user">
+                    <ul class="icon-nav">				
+                        <li class='dropdown colo'>
+                            <a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-tint"></i></a>
+                            <ul class="dropdown-menu pull-right theme-colors">
+                                <li class="subtitle">
+                                    Predefined colors
+                                </li>
+                                <li>
+                                    <span class='red'></span>
+                                    <span class='orange'></span>
+                                    <span class='green'></span>
+                                    <span class="brown"></span>
+                                    <span class="blue"></span>
+                                    <span class='lime'></span>
+                                    <span class="teal"></span>
+                                    <span class="purple"></span>
+                                    <span class="pink"></span>
+                                    <span class="magenta"></span>
+                                    <span class="grey"></span>
+                                    <span class="darkblue"></span>
+                                    <span class="lightred"></span>
+                                    <span class="lightgrey"></span>
+                                    <span class="satblue"></span>
+                                    <span class="satgreen"></span>
+                                </li>
+                            </ul>
+                        </li>				
+                    </ul>
+                    <div class="dropdown">
+                        <a href="#" class='dropdown-toggle' data-toggle="dropdown">Israel García Gómez <img src="img/demo/user-avatar.jpg" alt=""></a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="more-userprofile.html">Editar perfil</a>
+                            </li>
+
+                            <li>
+                                <a href="login.html">Cerrar sesión</a>
+                            </li>
+                        </ul>
+                    </div>	
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid" id="content">
+            <div id="left">
+                <form action="search-results.html" method="GET" class='search-form'>
+                    <div class="search-pane">
+                        <input type="text" name="search" placeholder="Buscar paciente">
+                        <button type="submit"><i class="icon-search"></i></button>
+                    </div>
+                </form>			
+            </div>
+            <div id="main">
+                <div class="container-fluid">		
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="box box-color box-bordered">
+                                <div class="box-title">
+                                    <h3>
+                                        <i class="icon-user"></i>
+                                        Perfil Paciente
+                                    </h3>
+                                </div>
+                                <div class="box-content nopadding">
+                                    <div class="tab-content padding tab-content-inline tab-content-bottom">
+                                        <div class="" id="profile">
+                                            <div class="row-fluid">
+                                                <div class="pagination-centered">
+                                                    <ul class="tiles2"><li class="image">
+                                                            <a><img src="img/img_users/default/mujer_default.png" alt=""><span class='name'>Nombre paciente</span></a>
+                                                        </li></ul>                                    
+                                                </div>
+                                                <div class="control-group form-horizontal">
+                                                    <label for="country" class="control-label right">Edad:</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="name" class='input-xlarge' value="Edad del paciente">
+                                                    </div>
+                                                </div>
+                                                
+                                                <!--adsa-->
+                                                
+                                                <div class="row-fluid">
+					<div class="span12">
+						<div class="box box-color box-bordered">
+							<div class="box-title">
+								<h3>
+									Historial de citas
+								</h3>
+							</div>
+							<div class="box-content nopadding">
+								<table class="table table-hover table-nomargin table-bordered usertable">
+									<thead>
+										<tr class='thefilter'>
+											<th class='with-checkbox'></th>
+											<th>Nombre</th>
+											<th>Email</th>
+											<th class='hidden-350'>Status Pago</th>
+											<th class='hidden-1024'>Fecha de cita</th>
+											<th class='hidden-480'>Opciones</th>
+										</tr>
+										<tr>
+											<th class='with-checkbox'><input type="checkbox" name="check_all" id="check_all"></th>
+											<th>Nombre</th>
+											<th>Email</th>
+											<th class='hidden-350'>Status Pago</th>
+											<th class='hidden-1024'>Fecha de cita</th>
+											<th class='hidden-480'>Opciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>John Doe</td>
+											<td>john.doe@johndoe.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>03-07-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Jane Doe</td>
+											<td>jane.doe@johndoe.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>02-07-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Max Mustermann</td>
+											<td>max.mustermann@maxmustermann.com</td>
+											<td class='hidden-350'><span class="label label-lightred">Pendiente</span></td>
+											<td class='hidden-1024'>01-07-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Mary P. Hendrix</td>
+											<td>mary.p@maryhendrix.com</td>
+											<td class='hidden-350'><span class="label">Disabled</span></td>
+											<td class='hidden-1024'>30-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>John J. Rodriquez</td>
+											<td>mary.p@maryhendrix.com</td>
+											<td class='hidden-350'><span class="label">Disabled</span></td>
+											<td class='hidden-1024'>30-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Michael J. Puente</td>
+											<td>MichaelJPuente@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>23-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Jeffery B. Barnard</td>
+											<td>JefferyBBarnard@einrot.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>22-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Johanna R. Lewis</td>
+											<td>JohannaRLewis@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>21-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Rochelle J. Worsham</td>
+											<td>RochelleJWorsham@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>21-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Rudolph B. Beaty</td>
+											<td>RudolphBBeaty@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>21-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>John T. Medina</td>
+											<td>JohnTMedina@einrot.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>20-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Dwayne D. Bender</td>
+											<td>DwayneDBender@einrot.com</td>
+											<td class='hidden-350'><span class="label label-satgreen">Pagado</span></td>
+											<td class='hidden-1024'>20-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Peter C. Thomas</td>
+											<td>PeterCThomas@einrot.com</td>
+											<td class='hidden-350'><span class="label">Disabled</span></td>
+											<td class='hidden-1024'>19-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+										
+										<tr>
+											<td class="with-checkbox">
+												<input type="checkbox" name="check" value="1">
+											</td>
+											<td>Rochelle J. Worsham</td>
+											<td>RochelleJWorsham@cuvox.de</td>
+											<td class='hidden-350'><span class="label label-lightred">Pendiente</span></td>
+											<td class='hidden-1024'>16-06-2013</td>
+											<td class='hidden-480'>
+												<a href="#" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+												<a href="#" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+                                                
+                                                <!--fds-->
+                                                
+                                                
+                                            </div>  
+                                            
+                                            <!--inicio tabla-->
+                                            
+                                            
+                                            
+                                            <!--fin tabla-->
+                                        </div>							
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+    </body>
+
+</html>
+
+
+
+
