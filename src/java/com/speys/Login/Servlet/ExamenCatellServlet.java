@@ -57,10 +57,15 @@ public class ExamenCatellServlet extends HttpServlet {
                 }
                 request.getSession().setAttribute("preguntas", preguntas);
                 
-                if (request.getParameter("direccion").equals("Anterior")) {
-                    request.setAttribute("posicion", posicion-1);
+                if (request.getParameter("direccion") != null) {
+                    if (request.getParameter("direccion").equals("Anterior")) {
+                        request.setAttribute("posicion", posicion-1);
+                    }else{
+                        request.setAttribute("posicion", posicion+1);
+                    }
                 }else{
-                    request.setAttribute("posicion", posicion+1);
+                    posicion = Integer.parseInt(request.getParameter("posicionHiden"));
+                    request.setAttribute("posicion", posicion);
                 }
                 
                 rd = request.getRequestDispatcher("jsp/ExamenCatell.jsp");
