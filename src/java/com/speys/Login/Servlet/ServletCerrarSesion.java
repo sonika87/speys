@@ -6,24 +6,21 @@
 
 package com.speys.Login.Servlet;
 
-import com.speys.Login.Bean.PrincipalBean;
-import com.speys.Login.Gestor.LoginGestor;
-import com.speys.utilerias.StringEncrypter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.json.JSONObject;
 
 /**
  *
- * @author sonika
+ * @author Gaby
  */
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ServletCerrarSesion", urlPatterns = {"/ServletCerrarSesion"})
+public class ServletCerrarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,35 +33,14 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
-       HttpSession sesion = request.getSession(true);
-       String InfoMensajeJson = "";
-       try {
-           
-            LoginGestor gestor = new LoginGestor();
-            String param01=request.getParameter("param01");
-            String param02=request.getParameter("param02");
-          
-           // sesion.removeAttribute("PrincipalBean");
-           InfoMensajeJson = gestor.validarParametros(param01,param02);
-//            sesion.setAttribute("PrincipalBean", principalBean);
-            //System.out.println(principalBean.isValidSesion());
-//           
-//            if(InfoMensajeJson.equals("true")){
-//            }else{
-//                
-//            }
-            out.print(InfoMensajeJson);
-            
-        } catch (Exception ex){
-            System.out.println(" ex");
-
-        } finally {
-            out.close();
-        }
-    
+       PrintWriter out = response.getWriter();
+        RequestDispatcher rd;
+        request.getSession().invalidate();
+        rd = getServletContext().getRequestDispatcher("/index.jsp");
+        rd.forward(request, response);
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
