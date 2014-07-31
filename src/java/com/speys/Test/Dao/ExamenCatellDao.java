@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.speys.Login.Dao;
+package com.speys.Test.Dao;
 
-import com.speys.Login.Bean.PeguntaExamenBean;
+import com.speys.Test.Bean.PeguntaExamenBean;
 import com.speys.utilerias.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

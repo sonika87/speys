@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.speys.Login.Servlet;
+package com.speys.Test.Servlet;
 
-import com.speys.Login.Bean.PeguntaExamenBean;
-import com.speys.Login.Dao.ExamenCatellDao;
+import com.speys.Test.Bean.PeguntaExamenBean;
+import com.speys.Test.Dao.ExamenCatellDao;
 import com.speys.utilerias.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;

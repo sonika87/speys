@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>ExamenCatellServlet</servlet-name>
-        <servlet-class>com.speys.Login.Servlet.ExamenCatellServlet</servlet-class>
+        <servlet-class>com.speys.Test.Servlet.ExamenCatellServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>

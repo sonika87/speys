@@ -1,11 +1,11 @@
-<%-- 
+<%--  
     Document   : ExamenCatell
     d on : 14/07/2014, 02:44:43 PM
     Author     : sonika
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="com.speys.Login.Bean.PeguntaExamenBean"%>
+<%@page import="com.speys.Test.Bean.PeguntaExamenBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
@@ -45,6 +45,26 @@
                     }
                 }
             }
+
+            window.onload = function(e) {
+                e.preventDefault();
+                var $el = $(this);
+                var spanElement = $el.parents("[class*=span]");
+                var spanWidth = parseInt(spanElement.attr('class').replace("span", "")),
+                        previousElement = (spanElement.prev().length > 0) ? spanElement.prev() : spanElement.next();
+                if (previousElement.length > 0) {
+                    var prevSpanWidth = parseInt(previousElement.attr("class").replace("span", ""));
+                }
+                bootbox.animate(false);
+                bootbox.confirm("Do you really want to remove the widget <strong>" + $el.parents(".box-title").find("h3").text() + "</strong>?", "Cancel", "Yes, remove", function(r) {
+                    if (r) {
+                        $el.parents('[class*=span]').remove();
+                        if (previousElement.length > 0) {
+                            previousElement.removeClass("span" + prevSpanWidth).addClass("span" + (prevSpanWidth + spanWidth));
+                        }
+                    }
+                });
+            };
         </script>
 
         <meta charset="utf-8">
@@ -127,7 +147,7 @@
 
     </head>
     <!-- onbeforeunload="salir(event)"-->
-    <body onbeforeunload="salir(event)">
+    <body>
         <div id="navigation">
             <div class="container-fluid">
                 <a href="#" id="brand">SPEYS</a>
@@ -238,9 +258,9 @@
                                                         <br/>
                                                         <div >
 
-                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("A")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="A"> A) <%= preguntas.get((posicion - 1)).getResA()%><br/><br/>
-                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("B")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="B"> B) <%= preguntas.get((posicion - 1)).getResB()%><br/><br/>
-                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("C")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="C"> C) <%= preguntas.get((posicion - 1)).getResC()%>
+                                                            <input <%if ( preguntas.get((posicion - 1)).getRespuesta().equals("A")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="A"> A) <%= preguntas.get((posicion - 1)).getResA()%><br/><br/>
+                                                            <input <%if ( preguntas.get((posicion - 1)).getRespuesta().equals("B")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="B"> B) <%= preguntas.get((posicion - 1)).getResB()%><br/><br/>
+                                                            <input <%if ( preguntas.get((posicion - 1)).getRespuesta().equals("C")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="C"> C) <%= preguntas.get((posicion - 1)).getResC()%>
                                                         </div>
                                                         <br/><br/>
                                                         <%session.setAttribute("peguntas", preguntas);%>
