@@ -15,56 +15,46 @@
         <%
             List<PeguntaExamenBean> preguntas = (List<PeguntaExamenBean>) session.getAttribute("preguntas");
             int posicion = Integer.parseInt(request.getAttribute("posicion").toString());
+            int contador = (Integer) session.getAttribute("contador");
         %>
 
         <script>
+            
+            var bPreguntar = true;
+            
             function enviar_formulario(posicion) {
+                bPreguntar = false;
                 document.getElementById('hiddenPosicion').value = posicion;
                 document.getElementById('formulario').submit();
             }
         </script>
 
         <script type="text/javascript">
+
+
+            window.onbeforeunload = salir;
+
             var message = 'No debe cerrar el navegador. Si presiona Aceptar lo cerrará y perderá los cambios no guardados.';
             function salir(e)
             {
-                alert("hola");
-                var evtobj = window.event ? event : e;
-                if (evtobj === e)
-                {
-                    if (!evtobj.clientY)
+                if (bPreguntar) {
+                    var evtobj = window.event ? event : e;
+                    if (evtobj === e)
                     {
-                        evtobj.returnValue = message;
+                        if (!evtobj.clientY)
+                        {
+                            evtobj.returnValue = message;
+                        }
                     }
-                }
-                else
-                {
-                    if (evtobj.clientY < 0)
+                    else
                     {
-                        evtobj.returnValue = message;
+                        if (evtobj.clientY < 0)
+                        {
+                            evtobj.returnValue = message;
+                        }
                     }
                 }
             }
-
-            window.onload = function(e) {
-                e.preventDefault();
-                var $el = $(this);
-                var spanElement = $el.parents("[class*=span]");
-                var spanWidth = parseInt(spanElement.attr('class').replace("span", "")),
-                        previousElement = (spanElement.prev().length > 0) ? spanElement.prev() : spanElement.next();
-                if (previousElement.length > 0) {
-                    var prevSpanWidth = parseInt(previousElement.attr("class").replace("span", ""));
-                }
-                bootbox.animate(false);
-                bootbox.confirm("Do you really want to remove the widget <strong>" + $el.parents(".box-title").find("h3").text() + "</strong>?", "Cancel", "Yes, remove", function(r) {
-                    if (r) {
-                        $el.parents('[class*=span]').remove();
-                        if (previousElement.length > 0) {
-                            previousElement.removeClass("span" + prevSpanWidth).addClass("span" + (prevSpanWidth + spanWidth));
-                        }
-                    }
-                });
-            };
         </script>
 
         <meta charset="utf-8">
@@ -146,8 +136,8 @@
         <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
 
     </head>
-    <!-- onbeforeunload="salir(event)"-->
-    <body>
+    <!--onbeforeunload="salir(event)"-->
+    <body onbeforeunload="salir(event)">
         <div id="navigation">
             <div class="container-fluid">
                 <a href="#" id="brand">SPEYS</a>
@@ -189,7 +179,7 @@
                         </li>				
                     </ul>
                     <div class="dropdown">
-                        <a href="#" class='dropdown-toggle' data-toggle="dropdown">Israel García Gómez <img src="img/demo/user-avatar.jpg" alt=""></a>
+                        <a href="#" class='dropdown-toggle' data-toggle="dropdown">Israel García Gómez <%= contador%><img src="img/demo/user-avatar.jpg" alt=""></a>
                         <ul class="dropdown-menu pull-right">
                             <li>
                                 <a href="more-userprofile.html">Editar perfil</a>
@@ -203,18 +193,19 @@
                 </div>
             </div>
         </div>
-
         <div class="container-fluid" id="content">
-            <div id="left">
+
+            <!--aqui -->
+            <div id="left" disabled="true"> 
                 <form action="search-results.html" method="GET" class='search-form'>
                     <div class="search-pane">
                         <input type="text" name="search" placeholder="Buscar paciente">
                         <button type="submit"><i class="icon-search"></i></button>
                     </div>
                 </form>	
-                <div style=" height:500px; overflow-y : scroll ; ">
-                    <table width='100%'>
-                        <% for (PeguntaExamenBean pregunta : preguntas) {%>
+                <div style=" height:600px; overflow-y : scroll ; ">
+                    <table width='100%' disabled="true" >
+                        <%  for (PeguntaExamenBean pregunta : preguntas) {%>
                         <% if (pregunta.getNumero() == posicion) {%>
                         <tr style='background-color: #20D538' >
                             <td >&nbsp;&nbsp;&nbsp;&nbsp;Pregunta <%=pregunta.getNumero()%></td>
@@ -234,11 +225,79 @@
                     </table>
                 </div>
             </div>
+
             <div id="main">
                 <div class="container-fluid">		
                     <div class="row-fluid">
                         <div class="span12">
                             <div class="box box-color box-bordered">
+                                <%if (posicion == 0) {%>
+
+                                <div class="box-title">
+                                    <h3>
+                                        <i class="icon-user"></i>
+                                        16FP INSTRUCCIONES
+                                    </h3>
+                                </div>
+                                <div class="box-content nopadding">
+                                    <div class="tab-content padding tab-content-inline tab-content-bottom">
+                                        <div class="tab-pane active" id="profile">
+                                            <form neme="formulario" id="formulario" action="/SPEYS/ExamenCatellServlet" class="form-horizontal" method="POST">
+                                                <div class="row-fluid">
+
+                                                    <div class="span10">
+                                                        <div >
+                                                            <p>     Dentro de este cuadernillo hay cierto número de preguntas. Con ellas se quiere conocer sus actitudes y sus 
+                                                                intereses. No hay respuestas "buenas" ni "malas" porque cada quien puede poseer sus propios puntos de vista. Para 
+                                                                que se pueda obtener la mayor cantidad de información de sus resultados, usted deberá tratar de responder exacta y 
+                                                                sinceramente.<br/><br/>
+
+                                                                Hay tres respuestas posibles para cada pregunta. Lea los siguientes ejemplos y seleccione la respuesta que más se 
+                                                                adecue a su forma de pensar ante cada situación.
+                                                                EJEMPLOS:<br/><br/>
+
+                                                                1.- Me gusta ver juegos deportivos entre equipos:<br/>
+                                                                a) Sí, b) en ocasiones, e) no<br/><br/>
+                                                                2.- Prefiero a la gente que es:<br/>
+                                                                a) Reservada, b) Intermedia, e) hace amigos rápidamente<br/><br/>
+                                                                3.- El dinero no trae la felicidad:<br/>
+                                                                a) sí (cierto), b) intermedio, e) no (falso)<br/><br/>
+                                                                4.- Mujer es a niña como gato es a:<br/>
+                                                                a) gatito, b) perro, e) niño.<br/><br/>
+
+                                                                En este último ejemplo hay una respuesta correcta: gatito. En el Cuestionario hay unas cuantas preguntas como 
+                                                                ésta.<br/>
+                                                                La letra (b) indica, por lo general, que usted está dudando acerca de lo que se le plantea. Hemos puesto varias frases y 
+                                                                palabras distintas dentro de esta letra, pero todas tienen ese mismo significado.
+                                                                Si algo no está claro, pregúntelo antes de empezar<br/><br/>
+                                                                Al estar contestando recuerde estos cuatro puntos:<br/><br/>
+                                                                1. No se le pide que medite sus respuestas. Dé la primera respuesta que más pronto le venga a la mente, 
+                                                                de un modo natural. Aunque las preguntas son demasiado cortas para darle todos los datos que usted desearía tener, 
+                                                                trate de dar siempre la mejor respuesta a un ritmo de alrededor de 5 contestaciones por minuto; haciéndolo así usted 
+                                                                terminará aproximadamente en 35 o 45 minutos.<br/><br/>
+                                                                2. Trate de no caer en el centro, en la letra (b), que son las respuestas de indecisión o de duda,
+                                                                Excepto cuando le sea realmente imposible escoger cualquier otra opción.<br/><br/>
+                                                                3. Asegúrese de no saltarse ninguna pregunta. Responda de manera apropiada a cada una de las
+                                                                Preguntas. Algunas puede ser que no encajen con su situación. Algunas preguntas pueden parecerle dernasiado 
+                                                                personales, pero recuerde que su Hoja de respuestas quedará en las manos confidenciales de un experto, y que no se 
+                                                                trata de localizar ciertas respuestas especiales, sino de apreciarlas en conjunto. Por ello, esta prueba se califica con una
+                                                                plantilla construida ex profeso.<br/><br/>
+                                                                4. Responda con toda la honestidad posible lo que sea cierto para usted. Evite marcar la respuesta que le parezca
+                                                                “la más aceptable” con el fin de impresionar al examinador.</p>
+                                                            <br/>
+                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Aceptar" onclick="bPreguntar = false;">
+                                                            <input style="visibility:hidden;" name="posicion" value="1">
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>							
+                                    </div>
+                                </div>
+
+
+                                <%} else {%>
                                 <div class="box-title">
                                     <h3>
                                         <i class="icon-user"></i>
@@ -258,9 +317,9 @@
                                                         <br/>
                                                         <div >
 
-                                                            <input <%if ( preguntas.get((posicion - 1)).getRespuesta().equals("A")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="A"> A) <%= preguntas.get((posicion - 1)).getResA()%><br/><br/>
-                                                            <input <%if ( preguntas.get((posicion - 1)).getRespuesta().equals("B")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="B"> B) <%= preguntas.get((posicion - 1)).getResB()%><br/><br/>
-                                                            <input <%if ( preguntas.get((posicion - 1)).getRespuesta().equals("C")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="C"> C) <%= preguntas.get((posicion - 1)).getResC()%>
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("A")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="A"/> A) <%= preguntas.get((posicion - 1)).getResA()%> <br/><br/>
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("B")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="B"/> B) <%= preguntas.get((posicion - 1)).getResB()%><br/><br/>
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("C")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="C"/> C) <%= preguntas.get((posicion - 1)).getResC()%>
                                                         </div>
                                                         <br/><br/>
                                                         <%session.setAttribute("peguntas", preguntas);%>
@@ -270,13 +329,16 @@
                                                             <%if (posicion == 1) { %>
                                                             <input type="submit" class='btn btn-primary' value="Anterior" disabled>
                                                             <%} else {%>
-                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Anterior" >
+                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Anterior" onclick="bPreguntar = false;">
                                                             <% }%>
                                                             <%if (posicion == 187) { %>
                                                             <input type="submit" name="direccion" class='btn btn-primary' value="Siguiente" disabled>
                                                             <% } else { %>
-                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Siguiente">
+                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Siguiente" onclick="bPreguntar = false;">
                                                             <% }%>
+                                                            <% if(contador == 186){ %>
+                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Finalizar" onclick="bPreguntar = false;">
+                                                            <%}%>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -284,6 +346,8 @@
                                         </div>							
                                     </div>
                                 </div>
+                                <% }%>
+
                             </div>
                         </div>
                     </div>
