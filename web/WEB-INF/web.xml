@@ -16,6 +16,10 @@
         <servlet-name>ExamenCatellServlet</servlet-name>
         <url-pattern>/ExamenCatellServlet</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>PacienteServlet</servlet-name>
+        <url-pattern>/PacienteServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
