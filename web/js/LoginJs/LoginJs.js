@@ -157,7 +157,7 @@ app.controller('PacienteController', function($scope, ns) {
             alert(data);
                         
                 $("#myModal").modal('hide');
-                      //  ns.consultaPacientes();
+                      location.href = "/SPEYS/jsp/ConsultaPacientes.jsp";
         });
     };
     
