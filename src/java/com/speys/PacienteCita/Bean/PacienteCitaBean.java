@@ -7,7 +7,7 @@
 package com.speys.PacienteCita.Bean;
 
 
-import com.speys.Paciente.Bean.PacienteBean;
+
 import java.util.Date;
 
 /**
