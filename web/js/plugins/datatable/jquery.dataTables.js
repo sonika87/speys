@@ -11447,6 +11447,10 @@
 		"sPagePrevious": "previous",
 		"sPageNext": "next",
 		"sPageLast": "last",
+//                "sPageFirst": "Primero",
+//		"sPagePrevious": "Anterior",
+//		"sPageNext": "Siguiente",
+//		"sPageLast": "Ultimo",
 		
 		/* Striping classes */
 		"sStripeOdd": "odd",

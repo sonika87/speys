@@ -64,7 +64,10 @@
         }
 
         function _getMonthName(iMonth) {
-            var asMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var asMonths = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+//var asMonths = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+//                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
             return asMonths[iMonth - 1];
         }
 
