@@ -5,7 +5,9 @@
  */
 package com.speys.Test.Servlet;
 
+import com.speys.Test.Bean.DetallesRespuestas;
 import com.speys.Test.Bean.PeguntaExamenBean;
+import com.speys.Test.Dao.ExamenCatellDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -90,6 +92,107 @@ public class EvaluacionCatellServlet extends HttpServlet {
         request.setAttribute("Q2", estenQ2);
         request.setAttribute("Q3", estenQ3);
         request.setAttribute("Q4", estenQ4);
+        
+        ExamenCatellDao daoCatell = new ExamenCatellDao();
+        
+        int idPaciente = 1;
+        
+        if (estenA > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "A", estenA, DetallesRespuestas.A_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "A", estenA, DetallesRespuestas.A_MENOS); 
+        }
+        
+        if (estenB > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "B", estenB, DetallesRespuestas.B_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "B", estenB, DetallesRespuestas.B_MENOS); 
+        }
+        
+        if (estenC > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "C", estenC, DetallesRespuestas.C_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "C", estenC, DetallesRespuestas.C_MENOS); 
+        }
+        
+        if (estenE > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "E", estenE, DetallesRespuestas.E_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "E", estenE, DetallesRespuestas.E_MENOS); 
+        }
+        
+        if (estenF > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "F", estenF, DetallesRespuestas.F_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "F", estenF, DetallesRespuestas.F_MENOS); 
+        }
+        
+        if (estenG > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "G", estenG, DetallesRespuestas.G_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "G", estenG, DetallesRespuestas.G_MENOS); 
+        }
+        
+        if (estenH > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "H", estenH, DetallesRespuestas.H_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "H", estenH, DetallesRespuestas.H_MENOS); 
+        }
+        
+        if (estenI > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "I", estenI, DetallesRespuestas.I_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "I", estenI, DetallesRespuestas.I_MENOS); 
+        }
+        
+        if (estenL > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "L", estenL, DetallesRespuestas.L_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "L", estenL, DetallesRespuestas.L_MENOS); 
+        }
+        
+        if (estenM > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "M", estenM, DetallesRespuestas.M_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "M", estenM, DetallesRespuestas.M_MENOS); 
+        }
+        
+        if (estenN > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "N", estenN, DetallesRespuestas.N_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "N", estenN, DetallesRespuestas.N_MENOS); 
+        }
+        
+        if (estenO > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "O", estenO, DetallesRespuestas.O_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "O", estenO, DetallesRespuestas.O_MENOS); 
+        }
+        
+        if (estenQ1 > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "Q1", estenQ1, DetallesRespuestas.Q1_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "Q1", estenQ1, DetallesRespuestas.Q1_MENOS); 
+        }
+        
+        if (estenQ2 > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "Q2", estenQ2, DetallesRespuestas.Q2_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "Q2", estenQ2, DetallesRespuestas.Q2_MENOS); 
+        }
+        
+        if (estenQ3 > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "Q3", estenQ3, DetallesRespuestas.Q3_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "Q3", estenQ3, DetallesRespuestas.Q3_MENOS); 
+        }
+        
+        if (estenQ4 > 5) {
+           daoCatell.insertarRespuestas(idPaciente, "Q4", estenQ4, DetallesRespuestas.Q4_MAS); 
+        }else{
+            daoCatell.insertarRespuestas(idPaciente, "Q4", estenQ4, DetallesRespuestas.Q4_MENOS); 
+        }
+        
         
          RequestDispatcher rd = null;
          rd = request.getRequestDispatcher("jsp/ResultadosExamenCatell.jsp");
