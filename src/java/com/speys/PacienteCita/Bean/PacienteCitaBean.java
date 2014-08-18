@@ -7,13 +7,14 @@
 package com.speys.PacienteCita.Bean;
 
 
+import com.speys.Paciente.Bean.PacienteBean;
 import java.util.Date;
 
 /**
  *
  * @author Israel
  */
-public class PacienteCitaBean {
+public class PacienteCitaBean extends PacienteBean{
     private int id_cita;
     private int id_paciente;
     private Date fecha_cita;
