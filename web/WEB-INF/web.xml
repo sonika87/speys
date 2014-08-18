@@ -8,6 +8,10 @@
         <servlet-name>ExamenCatellServlet</servlet-name>
         <servlet-class>com.speys.Test.Servlet.ExamenCatellServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PacienteCitaServlet</servlet-name>
+        <servlet-class>com.speys.PacienteCita.Servlet.PacienteCitaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -19,6 +23,10 @@
      <servlet-mapping>
         <servlet-name>PacienteServlet</servlet-name>
         <url-pattern>/PacienteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PacienteCitaServlet</servlet-name>
+        <url-pattern>/PacienteCitaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,11 +5,13 @@
  */
 package com.speys.Paciente.Bean;
 
+import com.speys.PacienteCita.Bean.PacienteCitaBean;
+
 /**
  *
  * @author Gaby
  */
-public class PacienteBean {
+public class PacienteBean extends PacienteCitaBean {
 
     private int pacienteId;
     private String nombre;
