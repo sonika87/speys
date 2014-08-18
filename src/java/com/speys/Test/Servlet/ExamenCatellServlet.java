@@ -37,15 +37,13 @@ public class ExamenCatellServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
             RequestDispatcher rd = null;
 
             if (request.getParameter("posicion") == null) {
                 if (request.getParameter("prueba") != null) {
                     List<PeguntaExamenBean> listaPreguntas = new ExamenCatellDao().consultar();
                     Random random = new Random();
-                    for (int i = 0; i < listaPreguntas.size(); i++) {
+                    for (int i = 1; i < listaPreguntas.size(); i++) {
                         int aleatorio = random.nextInt(3);
                         if (aleatorio == 0) {
                             listaPreguntas.get(i).setRespuesta("A");
@@ -68,7 +66,6 @@ public class ExamenCatellServlet extends HttpServlet {
 
                 int posicion = Integer.parseInt(request.getParameter("posicion"));
                 List<PeguntaExamenBean> preguntas = (List<PeguntaExamenBean>) request.getSession().getAttribute("preguntas");
-                System.out.println("pasa");
                 if (request.getParameter("respuesta") != null) {
                     if (preguntas.get((posicion - 1)).getRespuesta() == null 
                             || preguntas.get((posicion - 1)).getRespuesta().equals("")) {
@@ -100,7 +97,6 @@ public class ExamenCatellServlet extends HttpServlet {
 
             rd.forward(request, response);
 
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

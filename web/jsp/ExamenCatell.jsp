@@ -1,7 +1,7 @@
 <%--  
     Document   : ExamenCatell
     d on : 14/07/2014, 02:44:43 PM
-    Author     : sonika
+    Author     : Julio
 --%>
 
 <%@page import="java.util.List"%>
@@ -19,15 +19,29 @@
         %>
 
         <script>
-            
+
             var bPreguntar = true;
-            
+
             function enviar_formulario(posicion) {
                 bPreguntar = false;
                 document.getElementById('hiddenPosicion').value = posicion;
                 document.getElementById('formulario').submit();
             }
+
+            function valisarFinalizar() {
+                bPreguntar = false;
+                if (document.getElementById('respuestaA').checked === false
+                        && document.getElementById('respuestaB').checked === false
+                        && document.getElementById('respuestaC').checked === false) {
+                    alert("Elige una respuesta");
+                }else{
+                    location.href = "/SPEYS/EvaluacionCatellServlet";
+                }
+            }
+
         </script>
+
+
 
         <script type="text/javascript">
 
@@ -204,7 +218,7 @@
                     </div>
                 </form>	
                 <div style=" height:600px; overflow-y : scroll ; ">
-                    <table width='100%' disabled="true" >
+                    <table width='100%' >
                         <%  for (PeguntaExamenBean pregunta : preguntas) {%>
                         <% if (pregunta.getNumero() == posicion) {%>
                         <tr style='background-color: #20D538' >
@@ -214,7 +228,7 @@
                             <% if (pregunta.getEstado().equals("NR")) {%><td><img src="img/circle_orange.png" width="15px"></td><%}%>
                         </tr>
                         <% } else {%>
-                        <tr onclick="javascript:enviar_formulario(<%= pregunta.getNumero()%>);" onmouseover='this.style.background = "#20ADD5"' onmouseout='this.style.background = ""' >
+                        <tr <%if(contador != 186){%>onclick="javascript:enviar_formulario(<%= pregunta.getNumero()%>);"<%}%> onmouseover='this.style.background = "#20ADD5"' onmouseout='this.style.background = ""' >
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;Pregunta <%=pregunta.getNumero()%></td>
                             <% if (pregunta.getEstado().equals("R")) {%><td><img  src="img/accepted.png" width="15px"></td><%}%>
                             <% if (pregunta.getEstado().equals("NR")) {%><td><img  src="img/clock.png" width="15px"></td><%}%>
@@ -317,9 +331,9 @@
                                                         <br/>
                                                         <div >
 
-                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("A")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="A"/> A) <%= preguntas.get((posicion - 1)).getResA()%> <br/><br/>
-                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("B")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="B"/> B) <%= preguntas.get((posicion - 1)).getResB()%><br/><br/>
-                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("C")) {%> checked="checked" <% }%> type="radio" name="respuesta" value="C"/> C) <%= preguntas.get((posicion - 1)).getResC()%>
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("A")) {%> checked="checked" <% }%> type="radio" name="respuesta" id="respuestaA" value="A"/> A) <%= preguntas.get((posicion - 1)).getResA()%> <br/><br/>
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("B")) {%> checked="checked" <% }%> type="radio" name="respuesta" id="respuestaB" value="B"/> B) <%= preguntas.get((posicion - 1)).getResB()%><br/><br/>
+                                                            <input <%if (preguntas.get((posicion - 1)).getRespuesta().equals("C")) {%> checked="checked" <% }%> type="radio" name="respuesta" id="respuestaC" value="C"/> C) <%= preguntas.get((posicion - 1)).getResC()%>
                                                         </div>
                                                         <br/><br/>
                                                         <%session.setAttribute("peguntas", preguntas);%>
@@ -329,15 +343,15 @@
                                                             <%if (posicion == 1) { %>
                                                             <input type="submit" class='btn btn-primary' value="Anterior" disabled>
                                                             <%} else {%>
-                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Anterior" onclick="bPreguntar = false;">
+                                                            <input type="submit" name="direccion" <%if(contador == 186){%>disabled<%}%> class='btn btn-primary' value="Anterior" onclick="bPreguntar = false;">
                                                             <% }%>
                                                             <%if (posicion == 187) { %>
                                                             <input type="submit" name="direccion" class='btn btn-primary' value="Siguiente" disabled>
                                                             <% } else { %>
-                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Siguiente" onclick="bPreguntar = false;">
+                                                            <input type="submit" name="direccion" <%if(contador == 186){%>disabled<%}%> class='btn btn-primary' value="Siguiente" onclick="bPreguntar = false;">
                                                             <% }%>
-                                                            <% if(contador == 186){ %>
-                                                            <input type="submit" name="direccion" class='btn btn-primary' value="Finalizar" onclick="bPreguntar = false;">
+                                                            <% if (contador == 186) { %>
+                                                            <input type="button" class='btn btn-primary' value="Finalizar" onclick="valisarFinalizar();">
                                                             <%}%>
                                                         </div>
                                                     </div>
