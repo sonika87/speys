@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author Israel
  */
-public class PacienteCitaBean extends PacienteBean{
+public class PacienteCitaBean{
     private int id_cita;
     private int id_paciente;
     private Date fecha_cita;
