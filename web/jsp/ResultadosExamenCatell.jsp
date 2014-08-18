@@ -488,7 +488,7 @@
                                                                     </td></tr>
                                                             </table>
                                                         </div>
-
+                                                                    <a href="jsp/cita.jsp" ><input type="button" class='btn btn-primary' value="Aceptar"></a>            
                                                     </div>
                                                 </div>
                                             </form>
