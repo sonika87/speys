@@ -350,7 +350,10 @@
 							</div>
 							<div class="box-content nopadding"  >
                                                             <table class="table">
-									<thead>
+									<thead >
+                                                                            <tr >
+                                                                                <th colspan="7">  <input class="pull-right" type="text" name="search" placeholder="Buscar paciente" ng-model="query"></th>
+                                                                            </tr>
 										<tr>
 											
 											<th>Nombre</th>
@@ -376,7 +379,7 @@
 									</thead>
 									<tbody>
                                                                             
-                                                                            <tr ng-repeat="paciente in ListPacientes">
+                                                                            <tr ng-repeat="paciente in ListPacientes| filter:query">
 <!--											<td class="with-checkbox">
 												<input type="checkbox" name="check" value="1">
 											</td>-->
@@ -388,7 +391,7 @@
                                                                                         <td>{{paciente.costoConsulta}}</td>
 											
 											<td>
-												<a href="" class="btn" rel="tooltip" title="View"><i class="icon-search"></i></a>
+												
                                                                                                 <a href="" ng-click="consultaPaciente(paciente.pacienteId);" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
 												<a href="" ng-click="eliminaPaciente(paciente.pacienteId);" class="btn" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
 											</td>

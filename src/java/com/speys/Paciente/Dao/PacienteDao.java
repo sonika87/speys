@@ -12,7 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +34,10 @@ public class PacienteDao {
     private String PA_SPEYS_Elimina_Paciente = "{call PA_SPEYS_Elimina_Paciente(?)}";
     private String PA_SPEYS_Edita_Paciente = "{call PA_SPEYS_Edita_Paciente(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
     private String PA_SPEYS_Consulta_Pacientes = "{call PA_SPEYS_Consulta_Pacientes()}";
+    private String PA_SPEYS_ConsultaLista_Pacientes = "{call PA_SPEYS_ConsultaLista_Pacientes()}";
+    private String PA_SPEYS_ConsultaHistorial_Paciente = "{call PA_SPEYS_ConsultaHistorial_Paciente(?)}";
+    private String PA_SPEYS_Edita_Cita = "{call PA_SPEYS_Edita_Cita(?,?,?)}";
+    private String PA_SPEYS_busca_Cita = "{call PA_SPEYS_busca_Cita(?)}";
 
     public PacienteDao() {
         conMySql = ConexionBD.getConexionInstance();
@@ -99,8 +106,8 @@ public class PacienteDao {
         }
         return resul;
     }
-    
-     public List consultaPacientes() {
+
+    public List consultaPacientes() {
         List resul = new ArrayList();
         try {
             con = (com.mysql.jdbc.Connection) conMySql.getCon();
@@ -178,5 +185,146 @@ public class PacienteDao {
             sqle.printStackTrace();
         }
         return edicion;
+    }
+
+    public List consultaListaPacientes() {
+        List resul = new ArrayList();
+        try {
+            con = (com.mysql.jdbc.Connection) conMySql.getCon();
+            stm = (com.mysql.jdbc.CallableStatement) con.prepareCall(PA_SPEYS_ConsultaLista_Pacientes);
+            /*PARAMETROS DE ENTRADA (VARIABLES QUE RECIBE EL PROCEDIMIENTO)*/
+            stm.execute();
+            rs = stm.getResultSet();
+            while (rs.next()) {
+                PacienteBean pacienteB = new PacienteBean();
+                pacienteB.setPacienteId(rs.getInt(1));
+                pacienteB.setNombre(rs.getString(2));
+                pacienteB.setaPaterno(rs.getString(3));
+                pacienteB.setaMaterno(rs.getString(4));
+
+                resul.add(pacienteB);
+            }
+            rs.close();
+            stm.close();
+            con.close();
+        } catch (SQLException sqle) {
+            System.out.println(sqle);
+        }
+        return resul;
+    }
+
+    public List consultaHistorialPaciente(int pacienteId) {
+        List resul = new ArrayList();
+        try {
+            con = (com.mysql.jdbc.Connection) conMySql.getCon();
+            stm = (com.mysql.jdbc.CallableStatement) con.prepareCall(PA_SPEYS_ConsultaHistorial_Paciente);
+            /*PARAMETROS DE ENTRADA (VARIABLES QUE RECIBE EL PROCEDIMIENTO)*/
+            stm.setInt(1, pacienteId);
+            stm.execute();
+            rs = stm.getResultSet();
+            while (rs.next()) {
+                PacienteBean pacienteB = new PacienteBean();
+                pacienteB.setPacienteId(rs.getInt(2));
+
+                pacienteB.setFecha_cita(fecha(rs.getString(3)));
+                pacienteB.setPago_cita(rs.getInt(4));
+                pacienteB.setObservaciones_cita(rs.getString(5));
+
+                pacienteB.setNombre(rs.getString(7));
+                pacienteB.setaPaterno(rs.getString(8));
+                pacienteB.setaMaterno(rs.getString(9));
+                pacienteB.setSexo(rs.getString(10));
+                pacienteB.setAnioEdad(rs.getInt(11));
+                pacienteB.setMesesEdad(rs.getInt(12));
+                pacienteB.setDireccion(rs.getString(13));
+                pacienteB.setTelefono(rs.getString(14));
+                pacienteB.setEstadoCivil(rs.getString(15));
+                pacienteB.setCiudadOrigen(rs.getString(16));
+                pacienteB.setCorreoElectronico(rs.getString(17));
+                pacienteB.setNivelEstudios(rs.getString(18));
+                pacienteB.setCostoConsulta(rs.getDouble(19));
+                resul.add(pacienteB);
+            }
+            rs.close();
+            stm.close();
+            con.close();
+        } catch (SQLException sqle) {
+            System.out.println(sqle);
+        }
+        return resul;
+    }
+
+    public static Date fecha(String date) {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fecha = null;
+        try {
+            fecha = formatoFecha.parse(date);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return fecha;
+    }
+    
+    public List consultaCita(int pacienteId) {
+        List resul = new ArrayList();
+        try {
+            con = (com.mysql.jdbc.Connection) conMySql.getCon();
+            stm = (com.mysql.jdbc.CallableStatement) con.prepareCall(PA_SPEYS_busca_Cita);
+            /*PARAMETROS DE ENTRADA (VARIABLES QUE RECIBE EL PROCEDIMIENTO)*/
+            stm.setInt(1, pacienteId);
+            stm.execute();
+            rs = stm.getResultSet();
+            while (rs.next()) {
+                PacienteBean pacienteB = new PacienteBean();
+                pacienteB.setId_cita(rs.getInt(1));
+                pacienteB.setPacienteId(rs.getInt(2));
+                pacienteB.setFecha_cita(fecha(rs.getString(3)));
+                pacienteB.setPago_cita(rs.getInt(4));
+                pacienteB.setObservaciones_cita(rs.getString(5));
+                resul.add(pacienteB);
+            }
+            rs.close();
+            stm.close();
+            con.close();
+        } catch (SQLException sqle) {
+            System.out.println(sqle);
+        }
+        return resul;
+    }
+    
+    public boolean EditaCita(PacienteBean pacienteB) {
+        boolean edicion = false;
+        try {
+            con = (com.mysql.jdbc.Connection) conMySql.getCon();
+            stm = (com.mysql.jdbc.CallableStatement) con.prepareCall(PA_SPEYS_Edita_Cita);
+            /*PARAMETROS DE ENTRADA (VARIABLES QUE RECIBE EL PROCEDIMIENTO)*/
+            stm.setInt(1, pacienteB.getId_cita());
+            System.out.println("pacienteB.getId_cita()--"+pacienteB.getId_cita());
+            stm.setInt(2, pacienteB.getPago_cita());
+            stm.setString(3, pacienteB.getObservaciones_cita());
+         
+            edicion = stm.executeUpdate() == 1;
+            stm.close();
+            con.close();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return edicion;
+    }
+    public boolean EliminaCita(int pacienteId) {
+        boolean eliminacion = false;
+        try {
+            con = (com.mysql.jdbc.Connection) conMySql.getCon();
+            stm = (com.mysql.jdbc.CallableStatement) con.prepareCall(PA_SPEYS_Elimina_Paciente);
+            /*PARAMETROS DE ENTRADA (VARIABLES QUE RECIBE EL PROCEDIMIENTO)*/
+            stm.setInt(1, pacienteId);
+            eliminacion = stm.executeUpdate() == 1;
+            stm.close();
+            con.close();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return eliminacion;
     }
 }

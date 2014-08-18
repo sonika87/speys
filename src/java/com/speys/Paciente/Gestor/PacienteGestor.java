@@ -28,6 +28,15 @@ public class PacienteGestor {
         return json;
 
     }
+    
+     public String ConsultalistaPacientes() {
+        List resul = new ArrayList();
+        String json = null;
+        resul = paD.consultaListaPacientes();
+        json = new Gson().toJson(resul);
+        return json;
+
+    }
 
     public String ConsultaPaciente(int pacienteId) {
         List resul = new ArrayList();
@@ -72,5 +81,33 @@ public class PacienteGestor {
         }
         return Message;
     }
+    
+     public String ConsultaHistorialPaciente(int pacienteId) {
+        List resul = new ArrayList();
+        String json = null;
+        resul = paD.consultaHistorialPaciente(pacienteId);
+        json = new Gson().toJson(resul);
+        return json;
+
+    }
+     
+       public String buscaCita(int pacienteId ) {
+        List resul = new ArrayList();
+        String json = null;
+        resul = paD.consultaCita(pacienteId);
+        json = new Gson().toJson(resul);
+        return json;
+
+    }
+       
+       public String EditaCita(PacienteBean pacienteB) {
+        String json = null;
+        String mensaje = "";
+        mensaje = Message(paD.EditaCita(pacienteB));
+        json = new Gson().toJson(mensaje);
+        return json;
+    }
+       
+       
 
 }

@@ -93,6 +93,29 @@ public class PacienteServlet extends HttpServlet {
                PacienteId=Integer.parseInt(request.getParameter("pacienteId"));
                InfoMensajeJson=pG.EliminaPaciente(PacienteId);
                 out.print(InfoMensajeJson);
+            }else if (opcion.equals("6")) {
+             
+               InfoMensajeJson=pG.ConsultalistaPacientes();
+                out.print(InfoMensajeJson);
+                System.out.println("++++++++++"+InfoMensajeJson);
+            }else if (opcion.equals("7")) {
+              PacienteId=Integer.parseInt(request.getParameter("pacienteId"));
+               InfoMensajeJson=pG.ConsultaHistorialPaciente(PacienteId);
+                out.print(InfoMensajeJson);
+                System.out.println("*************"+InfoMensajeJson);
+            }else if (opcion.equals("8")) {
+              PacienteId=Integer.parseInt(request.getParameter("pacienteId"));
+               InfoMensajeJson=pG.buscaCita(PacienteId);
+                out.print(InfoMensajeJson);
+                System.out.println("-----------"+InfoMensajeJson);
+            }else if (opcion.equals("9")) {
+                 PacienteBean pacienteBean = new PacienteBean() ;
+               pacienteBean.setPago_cita(Integer.parseInt(request.getParameter("statusP")));      
+              pacienteBean.setObservaciones_cita(request.getParameter("obserP"));
+              pacienteBean.setId_cita(Integer.parseInt(request.getParameter("citaId")));
+               InfoMensajeJson=pG.EditaCita(pacienteBean);
+                out.print(InfoMensajeJson);
+                System.out.println("-----------"+InfoMensajeJson);
             }
            
            
