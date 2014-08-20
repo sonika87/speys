@@ -6,6 +6,7 @@
 package com.speys.Paciente.Dao;
 
 import com.speys.Paciente.Bean.PacienteBean;
+import com.speys.PacienteCita.Bean.PacienteCitaBean;
 import com.speys.utilerias.ConexionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -38,6 +39,7 @@ public class PacienteDao {
     private String PA_SPEYS_ConsultaHistorial_Paciente = "{call PA_SPEYS_ConsultaHistorial_Paciente(?)}";
     private String PA_SPEYS_Edita_Cita = "{call PA_SPEYS_Edita_Cita(?,?,?)}";
     private String PA_SPEYS_busca_Cita = "{call PA_SPEYS_busca_Cita(?)}";
+    private String PA_SPEYS_Inserta_Cita = "{call PA_SPEYS_Inserta_Cita(?,?,?,?)}";
 
     public PacienteDao() {
         conMySql = ConexionBD.getConexionInstance();
@@ -226,7 +228,7 @@ public class PacienteDao {
                 PacienteBean pacienteB = new PacienteBean();
                 pacienteB.setPacienteId(rs.getInt(2));
 
-                pacienteB.setFecha_cita(fecha(rs.getString(3)));
+                pacienteB.setFechaCita(rs.getString(3));
                 pacienteB.setPago_cita(rs.getInt(4));
                 pacienteB.setObservaciones_cita(rs.getString(5));
 
@@ -279,7 +281,7 @@ public class PacienteDao {
                 PacienteBean pacienteB = new PacienteBean();
                 pacienteB.setId_cita(rs.getInt(1));
                 pacienteB.setPacienteId(rs.getInt(2));
-                pacienteB.setFecha_cita(fecha(rs.getString(3)));
+                pacienteB.setFechaCita(rs.getString(3));
                 pacienteB.setPago_cita(rs.getInt(4));
                 pacienteB.setObservaciones_cita(rs.getString(5));
                 resul.add(pacienteB);
@@ -300,7 +302,7 @@ public class PacienteDao {
             stm = (com.mysql.jdbc.CallableStatement) con.prepareCall(PA_SPEYS_Edita_Cita);
             /*PARAMETROS DE ENTRADA (VARIABLES QUE RECIBE EL PROCEDIMIENTO)*/
             stm.setInt(1, pacienteB.getId_cita());
-            System.out.println("pacienteB.getId_cita()--"+pacienteB.getId_cita());
+          
             stm.setInt(2, pacienteB.getPago_cita());
             stm.setString(3, pacienteB.getObservaciones_cita());
          
@@ -327,4 +329,27 @@ public class PacienteDao {
         }
         return eliminacion;
     }
+    
+     public boolean InsertarCita(PacienteBean cita){
+         boolean insertar = false;
+        try {
+            con = (com.mysql.jdbc.Connection) conMySql.getCon();
+            stm = (com.mysql.jdbc.CallableStatement) con.prepareCall(PA_SPEYS_Inserta_Cita);
+            /*PARAMETROS DE ENTRADA (VARIABLES QUE RECIBE EL PROCEDIMIENTO)*/
+            stm.setInt(1, cita.getPacienteId());
+       
+            stm.setString(2, cita.getFechaCita());
+           
+            stm.setInt(3, cita.getPago_cita());
+
+            stm.setString(4, cita.getObservaciones_cita());            
+            insertar = stm.executeUpdate() == 1;
+            stm.close();
+            con.close();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return insertar;
+    }
+     
 }

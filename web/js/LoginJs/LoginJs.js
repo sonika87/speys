@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 var app = angular.module('app', []);
-
+var acronimos=false;
 app.factory('ns', function($http) {
     return {
         envio: null,
@@ -88,6 +88,15 @@ app.factory('ns', function($http) {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).success(data);
+        }, altaCita: function(data) {
+            return $http({
+                method: 'POST',
+                url: '/SPEYS/PacienteServlet',
+                data: this.envio,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).success(data);
         }
     };
 
@@ -136,8 +145,9 @@ app.controller('PacienteControllerAlta', function($scope, ns) {
         });
 
         ns.altaPaciente(function(data) {
-
             alert(data);
+                location.href = "/SPEYS/jsp/ConsultaPacientes.jsp";
+                document.getElementById("formAlta").reset();
         });
     };
 
@@ -212,6 +222,7 @@ app.controller('consultaPacientesController', function($scope, ns) {
     });
 
     $scope.consultaHistorialPacientes = function(pacienteId) {
+        $scope.muestra();
         ns.envio = $.param({
             opcion: "7",
             pacienteId: pacienteId
@@ -222,6 +233,13 @@ app.controller('consultaPacientesController', function($scope, ns) {
             $scope.listaHist = data;
 
         });
+    };
+    
+    $scope.muestra = function() {
+        var info = document.getElementById("main2");
+        var perfil = document.getElementById("main");
+            perfil.style.display = "none";           
+            info.style.display = "inline";          
     };
     
     $scope.consultaHistoPaciente = function(pacienteId) {
@@ -256,4 +274,28 @@ app.controller('consultaPacientesController', function($scope, ns) {
             location.href = "/SPEYS/jsp/Perfil.jsp";
         });
     };
+    
+    $scope.altaCita = function() {
+
+        ns.envio = $.param({
+            opcion: "10",
+            pacienteId: $scope.pacienteId,
+            statusP: $scope.pago,
+            obserP: $scope.observaciones_cita,
+            fechaCita: $scope.fecha            
+        });
+
+        ns.altaCita(function(data) {
+            alert(data);
+            $("#myModal2").modal('hide');
+              location.href = "/SPEYS/jsp/Perfil.jsp";
+        });
+    };
+    
+     $scope.ConsultaAltaCita= function(pacienteId) {
+      $scope.pacienteId=pacienteId;
+            $("#myModal2").modal("show");
+
+        };
+    
 });

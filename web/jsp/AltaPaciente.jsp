@@ -90,7 +90,7 @@
                 <a href="" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
                 <ul class='main-nav'>
                     <li>
-                        <a href="index.jsp">
+                        <a href="../jsp/Perfil.jsp">
                             <span>Inicio</span>
                         </a>
                     </li>	
@@ -125,7 +125,7 @@
                         </li>				
                     </ul>
                     <div class="dropdown">
-                        <a href="#" class='dropdown-toggle' data-toggle="dropdown">Israel García Gómez <img src="img/demo/user-avatar.jpg" alt=""></a>
+                        <a href="#" class='dropdown-toggle' data-toggle="dropdown">María Barrera Cárdenas <img src="../img/logo.png" alt=""></a>
                         <ul class="dropdown-menu pull-right">
                             <li>
                                 <a href="more-userprofile.html">Editar perfil</a>
@@ -142,7 +142,7 @@
 
         <div class="container-fluid" id="content">
             <div id="left">
-                <form action="search-results.html" method="GET" class='search-form'>
+                <form action="search-results.html" method="GET" class='search-form' id="formAlta">
                     <div class="search-pane">
                         <input type="text" name="search" placeholder="Buscar paciente">
                         <button type="submit"><i class="icon-search"></i></button>
@@ -163,7 +163,7 @@
                                 <div class="box-content nopadding">
                                     <div class="tab-content padding tab-content-inline tab-content-bottom">
                                         <div class="tab-pane active" id="profile">
-                                            <form action="#" class="form-horizontal">
+                                            <form  class="form-horizontal">
                                                 <div class="row-fluid">
 
                                                     <div class="span10">
@@ -171,7 +171,7 @@
                                                         <div class="control-group">
                                                             <label for="name" class="control-label right">Nombre:</label>
                                                             <div class="controls">
-                                                                <input  type="text" required  name="name"  ng-model="nombreP" class='input-xlarge' placeholder="Nombre del paciente">
+                                                                <input  type="text"   name="name"  ng-model="nombreP" class='input-xlarge' placeholder="Nombre del paciente" required >
                                                             </div>
                                                         </div>
                                                             <!--                                                                                                        <div class="controls" ng-repeat="paciente in infoPacienteList">
@@ -261,7 +261,7 @@
 
                                                             <div class="form-actions pull-right">
                                                                
-                                                                    <input type="submit"  ng-click="altaPaciente();" class='btn btn-primary' value="Guardar">
+                                                                <input type="submit"  ng-click="altaPaciente();" class='btn btn-primary' value="Guardar">
                                                                 
                                                             </div>
                                                         </div>

@@ -10,6 +10,9 @@ import com.speys.Paciente.Bean.PacienteBean;
 import com.speys.Paciente.Gestor.PacienteGestor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -116,6 +119,29 @@ public class PacienteServlet extends HttpServlet {
                InfoMensajeJson=pG.EditaCita(pacienteBean);
                 out.print(InfoMensajeJson);
                 System.out.println("-----------"+InfoMensajeJson);
+            }else if (opcion.equals("10")) {
+
+             int pagocita=0;
+              
+                /*ALTA DE CITA*/
+                 PacienteBean pacienteBean = new PacienteBean() ;
+                 pacienteBean.setPacienteId(Integer.parseInt(request.getParameter("pacienteId")));
+
+                 if(request.getParameter("statusP").equals("true")){
+                    pagocita=1;
+                 }else{
+                      pagocita=0;
+                 }
+                 
+                 System.out.println("pagocita{{{{{{{{{{{{{{{{{{"+pagocita);
+               pacienteBean.setPago_cita(pagocita);      
+              pacienteBean.setObservaciones_cita(request.getParameter("obserP"));
+              
+             pacienteBean.setFechaCita(request.getParameter("fechaCita"));
+            
+               InfoMensajeJson=pG.InsertaCita(pacienteBean);
+                out.print(InfoMensajeJson);
+                System.out.println("lllllllllllllllllllllllllllllll-------->"+InfoMensajeJson);
             }
            
            

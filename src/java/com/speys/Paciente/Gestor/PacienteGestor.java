@@ -8,6 +8,7 @@ package com.speys.Paciente.Gestor;
 import com.google.gson.Gson;
 import com.speys.Paciente.Bean.PacienteBean;
 import com.speys.Paciente.Dao.PacienteDao;
+import com.speys.PacienteCita.Bean.PacienteCitaBean;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +107,14 @@ public class PacienteGestor {
         mensaje = Message(paD.EditaCita(pacienteB));
         json = new Gson().toJson(mensaje);
         return json;
+    }
+       public String InsertaCita(PacienteBean pacienteB) {
+        String json = null;
+        String mensaje = "";
+        mensaje = Message(paD.InsertarCita(pacienteB));
+        json = new Gson().toJson(mensaje);
+        return json;
+
     }
        
        

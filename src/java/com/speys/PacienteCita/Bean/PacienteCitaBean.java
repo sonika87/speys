@@ -18,6 +18,7 @@ public class PacienteCitaBean{
     private int id_cita;
     private int id_paciente;
     private Date fecha_cita;
+    private String fechaCita;
     private int pago_cita;
     private String observaciones_cita;
 
@@ -89,6 +90,20 @@ public class PacienteCitaBean{
      */
     public void setObservaciones_cita(String observaciones_cita) {
         this.observaciones_cita = observaciones_cita;
+    }
+
+    /**
+     * @return the fechaCita
+     */
+    public String getFechaCita() {
+        return fechaCita;
+    }
+
+    /**
+     * @param fechaCita the fechaCita to set
+     */
+    public void setFechaCita(String fechaCita) {
+        this.fechaCita = fechaCita;
     }
     
     

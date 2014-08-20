@@ -124,10 +124,10 @@
 
     <body>
         <div ng-controller="consultaPacientesController">
-            
-            
-            
-             <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -137,54 +137,107 @@
                         <div class="modal-body">
 
                             <form  class="form-horizontal">
-                                                <div class="row-fluid">
+                                <div class="row-fluid">
 
-                                                    <div class="span10">
-                                                        <div  >
-                                                        <div class="control-group">
-                                                            <label for="name" class="control-label right">Status Pago</label>
-                                                            <div class="controls">
-                                                                <input type="text" name="name"  ng-model="PacienteHistoEdit.pago_cita" class='input-xlarge' placeholder="Status Pago">
-                                                            </div>
-                                                        </div>
-                                                            <!--                                                                                                        <div class="controls" ng-repeat="paciente in infoPacienteList">
-                                                                                                                                                    <input type="text" name="name"  ng-value="paciente.nombre" class='input-xlarge' value="Nombre del paciente">
-                                                                                                                                                </div>
-                                                                                                                                                            </div>-->
-                                                            <div class="control-group">
-                                                                <label  class="control-label right">Observaciones</label>
-                                                                <div class="controls">
-                                                                    <input type="text" ng-model="PacienteHistoEdit.observaciones_cita" class='input-xlarge' placeholder="Observaciones">
-                                                                </div>
-                                                            </div>
-                                                           
-                                                            <div class="form-actions pull-right">
-                                                               
-                                                                <input type="button" ng-click="editaCita(PacienteHistoEdit);" class='btn btn-primary' value="Editar">
-                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                            </form>
+                                    <div class="span10">
+                                        <div  >
+                                            <div class="control-group">
+                                                <label for="name" class="control-label right">Status Pago</label>
+                                                <div class="controls">
+                                                    <input type="checkbox" name="pagoCheck" ng-model="PacienteHistoEdit.pago_cita" ng-checked="PacienteHistoEdit.pago_cita" required > 
+<!--                                                    <input type="text" name="name"  ng-model="PacienteHistoEdit.pago_cita" class='input-xlarge' placeholder="Status Pago">-->
+                                                </div>
+                                            </div>
+                                            <!--                                                                                                        <div class="controls" ng-repeat="paciente in infoPacienteList">
+                                                                                                                                    <input type="text" name="name"  ng-value="paciente.nombre" class='input-xlarge' value="Nombre del paciente">
+                                                                                                                                </div>
+                                                                                                                                            </div>-->
+                                            <div class="control-group">
+                                                <label  class="control-label right">Observaciones</label>
+                                                <div class="controls">
+                                                    <input type="text" ng-model="PacienteHistoEdit.observaciones_cita" class='input-xlarge' placeholder="Observaciones" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-actions pull-right">
+
+                                                <input type="button" ng-click="editaCita(PacienteHistoEdit);" class='btn btn-primary' value="Editar">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div><!-- End of Modal body -->
                     </div><!-- End of Modal content -->
                 </div><!-- End of Modal dialog -->
             </div><!-- End of Modal -->
-            
-            
-            
-            
-            
-            
-            
+
+
+            <div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button id="btnClose" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Alta Cita</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <form  class="form-horizontal">
+                                <div class="row-fluid">
+
+                                    <div class="span10">
+                                        <div  >
+                                            <div class="control-group">
+                                                <label for="name" class="control-label right" required >Status Pago</label>
+                                                <div class="controls">
+                                                    <label class='checkbox'>
+                                                        <input type="checkbox" name="pagoCheck" ng-model="pago" required > Pago realizado
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!--                                                                                                        <div class="controls" ng-repeat="paciente in infoPacienteList">
+                                                                                                                                    <input type="text" name="name"  ng-value="paciente.nombre" class='input-xlarge' value="Nombre del paciente">
+                                                                                                                                </div>
+                                                                                                                                            </div>-->
+                                            <div class="control-group">
+                                                <label  class="control-label right">Observaciones</label>
+                                                <div class="controls">
+                                                    <input type="text" ng-model="observaciones_cita" class='input-xlarge' placeholder="Observaciones" required >
+                                                </div>
+                                            </div>
+                                             <div class="control-group">
+                                                <label for="name" class="control-label right">Fecha</label>
+                                                <div class="controls">
+                                                    <input type="date" name="bday"  ng-model="fecha" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-actions pull-right">
+
+                                                <input type="button" ng-click="altaCita();" class='btn btn-primary' value="Guardar">
+                                                
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- End of Modal body -->
+                    </div><!-- End of Modal content -->
+                </div><!-- End of Modal dialog -->
+            </div>
+
+
+
+
             <div id="navigation">
                 <div class="container-fluid">
                     <a href="#" id="brand">SPEYS</a>
                     <a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
                     <ul class='main-nav'>
                         <li>
-                            <a href="index.html">
+                            <a href="../jsp/Perfil.jsp">
                                 <span>Inicio</span>
                             </a>
                         </li>	
@@ -219,7 +272,7 @@
                             </li>				
                         </ul>
                         <div class="dropdown">
-                            <a href="#" class='dropdown-toggle' data-toggle="dropdown">Israel García Gómez <img src="img/demo/user-avatar.jpg" alt=""></a>
+                            <a href="#" class='dropdown-toggle' data-toggle="dropdown">María Barrera Cárdenas <img src="../img/logo.png" alt=""></a>
                             <ul class="dropdown-menu pull-right">
                                 <li>
                                     <a href="more-userprofile.html">Editar perfil</a>
@@ -235,7 +288,12 @@
             </div>
 
             <div class="container-fluid" id="content">
-                <div id="left">
+               
+
+
+
+                <div id="main"> 
+                    <div id="left">
                     <form  class='search-form'>
                         <div class="search-pane">
                             <input type="text" name="search" placeholder="Buscar paciente" ng-model="query">
@@ -249,10 +307,6 @@
 
                     </form>			
                 </div>
-
-
-
-                <div id="main" style="display:none">
                     <div class="container-fluid">		
                         <div class="row-fluid">
                             <div class="span12">
@@ -269,11 +323,12 @@
                                                 <div class="row-fluid">
                                                     <div class="pagination-centered">
                                                         <ul class="tiles"><li class="image">
-                                                                <a><img src="img/img_users/default/mujer_default.png" alt=""><span class='name'>Psic. María Barrera Cárdenas</span></a>
+                                                                <a><img src="../img/img_users/default/mujer_default.png" alt=""><span class='name'>Psic. María Barrera Cárdenas</span></a>
                                                             </li></ul><br><br><br><br><br><br><br><br><br><br><br>
                                                         <h4>Egresada de<br><br>
                                                             "Universidad Autonoma De México"</h4>                                      
-                                                    </div><br><br><br><br><br><br>                                                                                          
+                                                    </div><br><br><br><br><br><br>
+                                                    <a href="../jsp/ConsultaPacientes.jsp">  <button type="button" class="btn btn-primary" >Consultar Pacientes</button></a>
                                                 </div>                                            
                                             </div>							
                                         </div>
@@ -291,7 +346,8 @@
 
 
 
-                <div id="main">
+                <div id="main2" style="display:none" >
+                    
                     <div class="container-fluid">		
                         <div class="row-fluid">
                             <div class="span12">
@@ -327,6 +383,7 @@
                                                             <td><h6>Costo <br>por consulta</h6></td>
                                                             <td><h6>Estado Civil</h6></td>
                                                             <td><h6>Correo Electronico</h6></td>
+                                                            <td><h6>Opciones</h6></td>
                                                         </tr>
 
                                                         <tr style="text-align: center">
@@ -336,6 +393,9 @@
                                                             <td>{{datosPersonales.costoConsulta}}</td>
                                                             <td>{{datosPersonales.estadoCivil}}</td>
                                                             <td>{{datosPersonales.correoElectronico}}</td>
+                                                            <td><button type="button" class="btn btn-primary" ng-click="ConsultaAltaCita(datosPersonales.pacienteId)">Agendar Cita</button>
+                                                            <a href="../ExamenCatellServlet">  <button type="button" class="btn btn-primary" >Aplicacion de prueba</button></a>
+                                                            </td>
                                                         </tr>
 
 
@@ -355,45 +415,47 @@
                                                             </div>
                                                             <div class="box-content nopadding">
                                                                 <table class="table">
-									<thead >
-                                                                            <tr >
-                                                                                <th colspan="7">  <input class="pull-right" type="text" name="search" placeholder="Buscar paciente" ng-model="query2"></th>
-                                                                            </tr>
-										<tr>
-											
-											<th>Nombre</th>
-                                                                                        
-                                                                                        <th>Sexo</th>
-                                                                                        <th>Observaciones</th>
-                                                                                        <th>Status Pago</th>
-											<th>Fecha de cita</th>
-                                                                                       									
-											<th>Opciones</th>
-										</tr>
+                                                                    <thead >
+                                                                        <tr >
+                                                                            <th colspan="7">  <input class="pull-right" type="text" name="search" placeholder="Buscar paciente" ng-model="query2"></th>
+                                                                        </tr>
+                                                                        <tr>
 
-									</thead>
-									<tbody>
-                                                                            
-                                                                            <tr ng-repeat="pac in listaHist| filter:query2">
-<!--											<td class="with-checkbox">
-												<input type="checkbox" name="check" value="1">
-											</td>-->
-											<td>{{pac.nombre}} {{pac.aPaterno}} {{pac.aMaterno}}</td>
-											<td>{{pac.sexo}}</td>
-                                                                                        <td>{{pac.observaciones_cita}}</td>
-                                                                                        <td>{{pac.pago_cita}}</td>
-                                                                                        <td>{{pac.fecha_cita}}</td>
-                                                                                      											
-											<td>
-												
-                                                                                                <a href="" ng-click="consultaHistoPaciente(pac.pacienteId);" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
-												
-											</td>
-										</tr>
+                                                                            <th>Nombre</th>
 
-                                                                              									
-									</tbody>
-								</table>
+                                                                            <th>Sexo</th>
+                                                                            <th>Observaciones</th>
+                                                                            <th>Status Pago</th>
+                                                                            <th>Fecha de cita</th>
+
+                                                                            <th>Opciones</th>
+                                                                        </tr>
+
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                        <tr ng-repeat="pac in listaHist| filter:query2">
+                                                                            <!--											<td class="with-checkbox">
+                                                                                                                                                                            <input type="checkbox" name="check" value="1">
+                                                                                                                                                                    </td>-->
+                                                                            <td>{{pac.nombre}} {{pac.aPaterno}} {{pac.aMaterno}}</td>
+                                                                            <td>{{pac.sexo}}</td>
+                                                                            <td>{{pac.observaciones_cita}}</td>
+                                                                           
+                                                                                
+                                                                            <td >     <input type="checkbox" name="pagoCheck" ng-model="pago" ng-checked="pac.pago_cita"> </td>
+                                                                            <td>{{pac.fechaCita}}</td>
+
+                                                                            <td>
+
+                                                                                <a href="" ng-click="consultaHistoPaciente(pac.pacienteId);" class="btn" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>
+
+                                                                            </td>
+                                                                        </tr>
+
+
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>

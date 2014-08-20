@@ -115,7 +115,7 @@
                 <a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
                 <ul class='main-nav'>
                     <li>
-                        <a href="index.html">
+                        <a href="jsp/Perfil.jsp">
                             <span>Inicio</span>
                         </a>
                     </li>	
@@ -150,7 +150,7 @@
                         </li>				
                     </ul>
                     <div class="dropdown">
-                        <a href="#" class='dropdown-toggle' data-toggle="dropdown">Israel García Gómez<img src="img/demo/user-avatar.jpg" alt=""></a>
+                        <a href="#" class='dropdown-toggle' data-toggle="dropdown">María Barrera Cárdenas <img src="img/logo.png" alt=""></a>
                         <ul class="dropdown-menu pull-right">
                             <li>
                                 <a href="more-userprofile.html">Editar perfil</a>
@@ -488,7 +488,8 @@
                                                                     </td></tr>
                                                             </table>
                                                         </div>
-
+                                                                    <br>
+                      <a href="jsp/Perfil.jsp">  <button type="button" class="btn btn-primary" >Aceptar</button></a>                                               
                                                     </div>
                                                 </div>
                                             </form>
