@@ -172,7 +172,7 @@
 						<div class="box-title">
 							<h3>
 								<i class="icon-user"></i>
-								Cita
+								Cita 
 							</h3>
 						</div>
 						<div class="box-content nopadding">
@@ -183,7 +183,7 @@
 
 										<div class="span10">
 												<div class="control-group">
-													<label for="name" class="control-label right">Nombre:</label>
+													<label for="name" class="control-label right">Nombre:  Holi</label>
 													<div class="controls">
 														<input type="text" name="name" ng-model="nombreP" class='input-xlarge'>
 													</div>
