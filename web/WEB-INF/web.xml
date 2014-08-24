@@ -4,22 +4,37 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.speys.Login.Servlet.LoginServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>ExamenCatellServlet</servlet-name>
         <servlet-class>com.speys.Test.Servlet.ExamenCatellServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>ReportGenerator1</servlet-name>
+        <servlet-class>com.speys.utilerias.ReportGenerator1</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>ExamenCatellServlet</servlet-name>
         <url-pattern>/ExamenCatellServlet</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>PacienteServlet</servlet-name>
         <url-pattern>/PacienteServlet</url-pattern>
     </servlet-mapping>
+ 
+    <servlet-mapping>
+        <servlet-name>ReportGenerator1</servlet-name>
+        <url-pattern>/reporte</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

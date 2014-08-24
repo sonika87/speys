@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.speys.Login.Servlet;
 
 import com.speys.Login.Bean.PrincipalBean;
@@ -38,16 +37,16 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
-       HttpSession sesion = request.getSession(true);
-       String InfoMensajeJson = "";
-       try {
-           
+        HttpSession sesion = request.getSession(true);
+        String InfoMensajeJson = "";
+        try {
+
             LoginGestor gestor = new LoginGestor();
-            String param01=request.getParameter("param01");
-            String param02=request.getParameter("param02");
-          
-           // sesion.removeAttribute("PrincipalBean");
-           InfoMensajeJson = gestor.validarParametros(param01,param02);
+            String param01 = request.getParameter("param01");
+            String param02 = request.getParameter("param02");
+
+            // sesion.removeAttribute("PrincipalBean");
+            InfoMensajeJson = gestor.validarParametros(param01, param02);
 //            sesion.setAttribute("PrincipalBean", principalBean);
             //System.out.println(principalBean.isValidSesion());
 //           
@@ -56,16 +55,18 @@ public class LoginServlet extends HttpServlet {
 //                
 //            }
             out.print(InfoMensajeJson);
-            
-        } catch (Exception ex){
-            System.out.println(" ex");
+
+        } catch (Exception ex) {
+            System.out.println(ex);
 
         } finally {
             out.close();
         }
-    
+
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
